@@ -1,4 +1,5 @@
 <?php
+
 namespace JakubOnderka\PhpVarDumpCheck;
 
 class RecursiveDirectoryFilterIterator extends \RecursiveFilterIterator
@@ -27,7 +28,7 @@ class RecursiveDirectoryFilterIterator extends \RecursiveFilterIterator
      * @link http://php.net/manual/en/filteriterator.accept.php
      * @return bool true if the current element is acceptable, otherwise false.
      */
-    public function accept()
+    public function accept(): bool
     {
         $current = $this->current()->getPathname();
         $current = $this->normalizeDirectorySeparator($current);
@@ -46,7 +47,7 @@ class RecursiveDirectoryFilterIterator extends \RecursiveFilterIterator
      * @link http://php.net/manual/en/recursivefilteriterator.haschildren.php
      * @return bool true if the inner iterator has children, otherwise false
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return $this->iterator->hasChildren();
     }
@@ -58,7 +59,7 @@ class RecursiveDirectoryFilterIterator extends \RecursiveFilterIterator
      * @link http://php.net/manual/en/recursivefilteriterator.getchildren.php
      * @return \RecursiveFilterIterator containing the inner iterator's children.
      */
-    public function getChildren()
+    public function getChildren(): \RecursiveFilterIterator
     {
         return new self($this->iterator->getChildren(), $this->excluded);
     }
